@@ -98,3 +98,83 @@ module.exports.authGoogleUser=(req,res)=> {
          }
     });
 }
+
+module.exports.getAllUsers = (req,res) =>{
+    console.log("GETTING LOGIN INFO");
+   LoginEntity.find({},function(err,data){
+          console.log(data);
+          return res.status(200).json(data);
+   });
+}
+
+module.exports.findUsersByUsername=(req, res) => {
+    var name=req.query.username;
+    //query is the ?username= in the googleLoginService
+    console.log("Username "+name);
+
+    LoginEntity.find({ username:name }, function(err, data){
+        if (err){ 
+            console.log(err);
+        } else {
+            console.log(data);
+            res.status(200).json(data[0]);
+        }
+    });
+}
+module.exports.blockUser=(req, res) => {
+    var name=req.query.username;
+    //query is the ?username= in the googleLoginService
+    console.log("User: "+name + "is being blocked now");
+
+    LoginEntity.updateOne({username: name}, {
+        $set: {
+            status: "blocked"
+        }
+    }, function(err, data) {
+        if(err){
+            console.log(err);
+        }
+    });
+}
+module.exports.unblockUser=(req, res) => {
+    var name=req.query.username;
+    //query is the ?username= in the googleLoginService
+    console.log("User: "+name + "is being unblocked now");
+
+    LoginEntity.updateOne({username: name}, {
+        $set: {
+            status: "inactive"
+        }
+    }, function(err, data) {
+        if(err){
+            console.log(err);
+        }
+    });
+}
+module.exports.editUser=(req, res) => {
+    var name=req.query.username;
+    //query is the ?username= in the googleLoginService
+    console.log("Inside edit User");
+
+    LoginEntity.updateOne({username: name}, {
+        $set: {
+            status: "inactive"
+        }
+    }, function(err, data) {
+        if(err){
+            console.log(err);
+        }
+    });
+}
+module.exports.deleteUser=(req, res) => {
+    var name=req.query.username;
+    //query is the ?username= in the googleLoginService
+    console.log("Inside delete User");
+    LoginEntity.deleteOne({username: name},err =>{
+        if(err){
+            res.status(200).json({status:"failed",message:"ERROR: Could not delete"});
+        }else{
+            res.status(200).json({status:"success",message:"User was deleted successfully"});
+        }
+    });
+}

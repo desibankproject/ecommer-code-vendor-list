@@ -43,7 +43,7 @@ export class VendorService {
     var endpoint = AppConfig.VENDOR_ENDPOINT+'/vcode/'+vcode;
     return this.http.get<Vendor>(endpoint);
 }
-
+  
 
   public findVendors():Observable<Vendor[]>{
     const endpoint = AppConfig.VENDOR_ENDPOINT;

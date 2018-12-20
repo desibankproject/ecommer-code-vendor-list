@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="thumb">
                                                 <img src="{{url}}/load-image?imageUrl={{item.imageUrl}}" alt="cart image" style="height:80px;"><br />
-                                                <a (click)="addToSaveForLater(item)" style="color:#2a9cf5;cursor: pointer;">Save for later</a>
+                                                <a (click)="addToSaveForLater(item, i)" style="color:#2a9cf5;cursor: pointer;">Save for later</a>
                                             </div>
                                             <div class="content">
                                                 <h4 class="title">{{item.title}}</h4>
@@ -120,11 +120,11 @@
                     </div><!-- //. bottom content -->
 
 
-                    <hr />
+                    <hr  *ngIf="saveForLaterList?.length > 0" />
 
                     
 
-                    <div class="top-content"><!-- top content -->
+                    <div  *ngIf="saveForLaterList?.length > 0" class="top-content"><!-- top content -->
                         <br /><br />
                         
 
@@ -132,6 +132,12 @@
                             <thead>
                                 <tr>
                                     <th colspan="2">
+
+                                        <!--
+                                        {{ saveForLaterList.length }}
+
+                                            <p *ngIf="saveForLaterList?.length > 0">SFL has item</p>
+                                        -->    
                                         
                                         <h3>Save For Later</h3>
                                     

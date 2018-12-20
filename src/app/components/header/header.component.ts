@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { CookieService } from 'ngx-cookie';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,25 @@ export class HeaderComponent implements OnInit {
 
   public productList:Product[] = [];  
   public itemsInCart = 0;
-
+  public status:String;
+  public isUser:boolean;
+  public isAdmin:boolean;
+  public currentUser:User;
+  
   constructor(private shoppingCartService:ShoppingCartService,private _cookieService:CookieService) { }
 
   ngOnInit() {
+    this.status = 'inactive';
+    this.isUser = true;
+    this.isAdmin = false;
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if(this.currentUser != null){
+      if(this.currentUser.role=='admin'){
+        this.isUser = false;
+        this.isAdmin = true;
+      }
+      this.status = 'active';
+    }
 
     this.shoppingCartService.productObservable.subscribe(
       pProductArray=>{

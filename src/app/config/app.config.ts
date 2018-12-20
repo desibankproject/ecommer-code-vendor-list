@@ -21,4 +21,12 @@ export class AppConfig{
     public static CHECKOUT_ENDPOINT = AppConfig.BASE_ENDPOINT + '/admin/checkout';
     public static SEARCH_ENDPOINT = AppConfig.BASE_ENDPOINT + '/admin/search';
     public static TOP_VENDORS_ENDPOINT = AppConfig.BASE_ENDPOINT + '/admin/top-vendor';
+    public static ALLREVIEWS_ENDPOINT = AppConfig.BASE_ENDPOINT + '/review';
+
+    public static USERS_ENDPOINT = "http://localhost:4000/" + 'users';
+    public static ALL_USERS_ENDPOINT = "http://localhost:4000/" + 'allUsers';
+    public static BLOCK_USER_ENDPOINT = "http://localhost:4000/" + 'blockUser';
+    public static UNBLOCK_USER_ENDPOINT = "http://localhost:4000/" + 'unblockUser';
+    public static EDIT_USER_ENDPOINT = "http://localhost:4000/" + 'editUser';
+    public static DELETE_USER_ENDPOINT = "http://localhost:4000/" + 'deleteUser';
 }

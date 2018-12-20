@@ -30,8 +30,17 @@ import { VendorListComponent } from './components/vendor/vendor-list/vendor-list
 import { GoogleLoginComponent } from './components/login/google-login/google-login.component';
 import { ManageSliderComponent } from './components/slider/manage-slider/manage-slider.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { SellerDashboardComponent } from './components/dashboard/seller-dashboard/seller-dashboard.component';
+import { UserDashboardComponent } from './components/dashboard/user-dashboard/user-dashboard.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
+  { path: 'user-list', component: UserListComponent},
+   { path: 'logout', component: LogoutComponent},
+   { path: 'admin-dashboard', component: DashboardComponent},
+   { path: 'seller-dashboard', component: SellerDashboardComponent},
+   { path: 'user-dashboard', component: UserDashboardComponent},
   { path: 'auth-user', component: LoginComponent},
   { path: 'category', component: CategoryComponent},
   { path: 'product-list', component: ListProductsComponent},

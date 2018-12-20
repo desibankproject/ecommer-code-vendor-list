@@ -41,6 +41,7 @@ module.exports.findProductsByIds=(req,res)=> {
       }
    }, function(err, data){
       if(err){
+         //logger.log('error', err);
          res.status(200).json("Failure: " + err);
       }
       console.log(data);

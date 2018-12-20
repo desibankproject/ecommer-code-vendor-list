@@ -2,10 +2,8 @@ module.exports.updateTotalSold = (items) => {
     console.log(items);
     //var totalSold = req.body.totalSold;
     ///var updatedProduct = new ProductEntity();
-    
-
-    for(var x=0;items.length;x++){
-        var item=items[x];
+     for(var x=0;items.length;x++){
+         var item=items[x];
 
         ProductEntity.find({pid:item.pid}, (err,data)=>{
             if(err){
@@ -19,15 +17,12 @@ module.exports.updateTotalSold = (items) => {
             updatedProduct.save(err =>{
                   if(err){
                      console.log(err);
-                              return res.status(200).json({status:"fail",message:"couldn't save to database"});
+                              
                   }else{
-                     return res.status(200).json({status:"success",message:"Product Table sucessfully updated"});
+                    console.log("@)@)@updated!!!!!!!!!!!!!!!!!");
                   }
                });
-            
          });
-
-
     }
 
  }

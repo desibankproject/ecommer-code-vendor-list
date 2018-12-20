@@ -117,6 +117,19 @@ module.exports.getProduct = (req,res)=>{
 //----------------------------------Product Review code----------------------------------------
 //---------------------------------------------------------------------------------------------
 var ReviewEntity = require('../../model/review-entity');
+//This is giving data in sorted order!
+module.exports.getAllProductReviews = (req,res)=>{
+   console.log("getAllProductReviews called!");
+   ReviewEntity.find({}, (err,data)=>{
+      if(err){
+         return res.status(404).send({
+            status:"fail",
+            message: "Product reviews not found  " 
+        });
+      }
+      return res.status(200).json(data);
+   }).sort('-doe');
+}
 
 module.exports.getProductReviews = (req,res)=>{
    var pid = req.params.pid;

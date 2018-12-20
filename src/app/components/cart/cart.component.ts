@@ -266,7 +266,14 @@ export class CartComponent implements OnInit {
   }
 
   addToCartFromSaveForLater(item, index){
-    alert("add back to cart from Save For Later Area !");
+    //alert("add back to cart from Save For Later Area !");
+
+    // remove from save for later list on this page
+    this.removeFromSaveForLater(item, index);
+
+    // add to cart in top right
+    this.shoppingCartService.addProductToCart(item);
+  
 
     // imageUrl into imageURL
     item.imageURL = item.imageUrl;
@@ -342,10 +349,19 @@ export class CartComponent implements OnInit {
 
   } 
 
-  addToSaveForLater(item){
+  addToSaveForLater(item, index){
     console.log("addToSaveForLater:");
     console.log(item); 
 
+    // remove from cart list on this page
+    this.total = this.total - (item.price * item.qty);
+    this.total = +this.total.toFixed(2);
+    this.productList.splice(index, 1);
+
+    // remove from cart in top right
+    this.shoppingCartService.removeProductFromCart(item, index);
+
+    // start process for adding to SFL
     this.saveLaterService.findSaveForLaterLists().subscribe(data =>{
       console.log("find save for later lists() :");
       console.log(data);
@@ -496,8 +512,11 @@ export class CartComponent implements OnInit {
   
   
 
-  addToWishListFromSaveForLater(item){
+  addToWishListFromSaveForLater(item, index){
     console.log(item);
+
+    // remove this product from Save For Later list
+    this.removeFromSaveForLater(item, index)
 
     var wishlist:WishList = new WishList();
 

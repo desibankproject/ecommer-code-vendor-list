@@ -7,7 +7,10 @@ module.exports.getSearchProduct = (req, res) => {
   //var ppid=req.query.pid;
   SearchEntity.find({}, (err, data) => {
     if (!err) {
+      console.log("))!checking");
       console.log(data);
+      logger.log('debug',"This is inside search controller!!!!!!!!!!!!!!!!!!");
+      logger.log('debug', JSON.stringify(data));
       return res.status(200).json(data);
     } else {
       return res.status(400).send({

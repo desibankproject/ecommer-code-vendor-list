@@ -19,136 +19,49 @@
     <div class="bottom-content"><!-- bottom content -->
         <div class="recent-reviews"><!-- recent reviews -->
             <h4 class="title">Recent Reviews</h4>
-            <div class="single-review-item"><!-- single review item -->
-                <div class="thumb">
-                    <img src="assets/img/recent-review/01.jpg" alt="recent review">
-                </div>
-                <div class="content">
-                    <h4 class="title">Footwear Dark</h4>
-                    <ul>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                    </ul>
-                    <span class="posted-by">by Abir Khan</span>
-                </div>
-            </div><!-- //. single review item -->
-            <div class="single-review-item"><!-- single review item -->
-                <div class="thumb">
-                    <img src="assets/img/recent-review/02.jpg" alt="recent review">
-                </div>
-                <div class="content">
-                    <h4 class="title">Milo Hoverboard</h4>
-                    <ul>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                    </ul>
-                    <span class="posted-by">by Rex Rifat</span>
-                </div>
-            </div><!-- //. single review item -->
-            <div class="single-review-item"><!-- single review item -->
-                <div class="thumb">
-                    <img src="assets/img/recent-review/03.jpg" alt="recent review">
-                </div>
-                <div class="content">
-                    <h4 class="title">Black Tshirt Brock</h4>
-                    <ul>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                    </ul>
-                    <span class="posted-by">by Panto Roy</span>
-                </div>
-            </div>
-            <div class="single-review-item"><!-- single review item -->
-                <div class="thumb">
-                    <img src="assets/img/recent-review/04.jpg" alt="recent review">
-                </div>
-                <div class="content">
-                    <h4 class="title">Black Tshirt Brock</h4>
-                    <ul>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                    </ul>
-                    <span class="posted-by">by Panto Roy</span>
-                </div>
-            </div><!-- //. single review item -->
-            <div class="single-review-item"><!-- single review item -->
-                <div class="thumb">
-                    <img src="assets/img/recent-review/05.jpg" alt="recent review">
-                </div>
-                <div class="content">
-                    <h4 class="title">Black Tshirt Brock</h4>
-                    <ul>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                        <li>
-                                <i class="fas fa-star"></i>
-                        </li>
-                    </ul>
-                    <span class="posted-by">by Panto Roy</span>
-                </div>
-            </div>
+
+            <!--
+            <a (click)="getReviews()"  class="boxed-btn" style="color:#fff;cursor: pointer;" >Get Reviews</a>
+                -->
+
+            <ng-container *ngFor="let item of reviewList; let i = index">
+                <!-- {{ item | json }} -->
+
+                <div class="single-review-item">
+                    <div class="thumb">
+                        <img src="{{url}}/load-image?imageUrl={{item.imageUrl}}" alt="recent review" style="height:80px;">
+
+                    </div>
+                    <div class="content">
+                        <h4 class="title"><a routerLink="/product-details/{{item.pid}}" style="color:#fff;">{{item.title}}</a></h4>
+                        <ul>
+
+                            <li *ngIf="item.rating > 0" >
+                                    <i class="fas fa-star"></i>
+                            </li>
+                            <li *ngIf="item.rating > 1" >
+                                    <i class="fas fa-star"></i>
+                            </li>
+                            <li *ngIf="item.rating > 2" >
+                                    <i class="fas fa-star"></i>
+                            </li>
+                            <li *ngIf="item.rating > 3" >
+                                    <i class="fas fa-star"></i>
+                            </li>
+                            <li *ngIf="item.rating > 4" >
+                                    <i class="fas fa-star"></i>
+                            </li>
+
+                        </ul>
+                        <span class="posted-by">by Abir Khan</span>
+                    </div>
+                </div>                
+
+            </ng-container>
+
+
+
+
         </div> <!-- //. recent reviews -->
     </div><!-- //. bottom content -->
 </div>

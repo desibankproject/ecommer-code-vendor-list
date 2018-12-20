@@ -73,6 +73,12 @@ export class ProductService {
     return this.http.request(req);
   }
 
+  public getAllReviews():Observable<Review[]>{
+    const endpoint = AppConfig.ALLREVIEWS_ENDPOINT; 
+
+    return this.http.get<Review[]>(endpoint);
+  }
+
   public saveReview(data:Review):Observable<any>{
     const endpoint = AppConfig.REVIEW_ENDPOINT;
     const httpOptions = {headers:new HttpHeaders({'user-access-token':'T0010101010','Content-Type':'application/json','Accept':'application/json'})};

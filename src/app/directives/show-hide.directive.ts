@@ -12,6 +12,7 @@ export class ShowHideDirective {
   constructor(private templateRef:TemplateRef<any>,private viewContainer:ViewContainerRef) { 
   }
 
+
   //@Input we are appying for the setter
   @Input()
   set showHide(condition:boolean){

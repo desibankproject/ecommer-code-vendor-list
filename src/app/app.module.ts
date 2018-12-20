@@ -70,8 +70,13 @@ import { FeaturedComponent } from './components/landing-page/featured/featured.c
 import { OffersaddComponent } from './components/landing-page/offersadd/offersadd.component';
 import { OrderConfirmationComponent } from './components/checkout/order-confirmation/order-confirmation.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { CookieModule } from 'ngx-cookie';
+import { LogoutComponent } from './components/logout/logout.component';
+import { UserDashboardComponent } from './components/dashboard/user-dashboard/user-dashboard.component';
+import { SellerDashboardComponent } from './components/dashboard/seller-dashboard/seller-dashboard.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 
 @NgModule({
@@ -90,6 +95,10 @@ import { CookieModule } from 'ngx-cookie';
     DashboardComponent,
     StorefrontComponent,
     LoginComponent,
+    LogoutComponent,
+	  UserDashboardComponent,
+    SellerDashboardComponent,
+	  UserListComponent,
     LandingPageComponent,
     ShopReviewComponent,
     SliderComponent,
@@ -142,6 +151,7 @@ import { CookieModule } from 'ngx-cookie';
     FormsModule,
     NgbModule,
     SlideshowModule,
+    NgxPaginationModule,
     CookieModule.forRoot()
   ],
   providers: [{

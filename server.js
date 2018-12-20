@@ -1,5 +1,6 @@
 //this is starting point of the program!
 //I have to configure Node.js as a server
+let winston = require('winston');
 var express = require('express'); //we have just installed
 var http = require('http'); //This comes with Node.js
 var bodyParser=require('body-parser');
@@ -11,8 +12,29 @@ var fs = require('fs');
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
 global.appRoot=appDir;
-console.log("appDir = "+appDir);
 
+//configuring the logger
+
+let logger = winston.createLogger({
+    level: 'debug',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(info => {
+            return `${info.timestamp} ${info.level}: ${info.message}`;
+        })
+    ),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'shopping_cart_app_error.log', level: 'error' }),
+        new winston.transports.File({filename: 'shopping_cart_app.log'})]
+});
+//Adding logger globally!!!!!!!!!!!!!!
+global.logger=logger;
+
+logger.log('info', 'A request was received');
+logger.log('error', 'this is error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+logger.log('debug', 'Hello this is testing ..... 10');
+console.log("appDir = "+appDir);
 
 
 var app = express(); //Instantiating Express

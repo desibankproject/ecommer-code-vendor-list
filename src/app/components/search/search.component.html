@@ -30,18 +30,17 @@
                     <!-- category sidebar -->
                     <div class="category-filter-widget">
                         <!-- category-filter-widget -->
-                        <h4 class="title">Filter by <span class="right">+</span></h4>
-                        <ul class="cat-list">
-                            <li><a href="#">brand <span class="right">+</span></a></li>
-                            <li><a href="#">GENARATION <span class="right">+</span></a></li>
-                            <li><a href="#">SOCKETs <span class="right">+</span></a></li>
-                            <li><a href="#">NUMBER OF CORE <span class="right">+</span></a></li>
-                            <li><a href="#">CLOCK SPEED <span class="right">+</span></a></li>
-                            <li><a href="#">PROCESSOR TYPE <span class="right">+</span></a></li>
-                            <li><a href="#">CACHE MEMORY <span class="right">+</span></a></li>
-                            <li><a href="#">OTHERS <span class="right">+</span></a></li>
-                            <li><a href="#">PRICE <span class="right">+</span></a></li>
-                        </ul>
+                        <h4 class="title">Filter by <span class="right">
+                            </span></h4>
+             <select #scategory="ngModel"  ngModel  name="selectedCategory"  (change)="filterProductsByCategory(scategory);">
+                                         <option value="">All</option>
+                                        <option value="Cloths">Cloths</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Mobile">Mobile</option>
+                                        <option value="Bag">Bag</option>
+                                        <option value="Shoe">Shoe</option>
+                                    </select> 
+                                  
                     </div><!-- //.category-filter-widget -->
                 </div><!-- //. category sidebar -->
                 <div class="category-compare margin-bottom-30">
@@ -104,7 +103,7 @@
                                 <li>
                                     <div class="form-element has-icon">
 
-                                        <select [(ngModel)]="sortingMethod" name="sortingMethod" class="input-field select">
+                                        <select [(ngModel)]="sortingMethod" name="sortingMethod" class="input-field select" (change)="getSortOrders()">
                                             <option value="Asc">Price (low to high)</option>
                                             <option value="Desc">Price (high to low)</option>
                                         </select>
@@ -112,7 +111,7 @@
                                             <i class="fas fa-angle-down"></i>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" (click)="getSortOrders()">SUBMIT</button>
+                                    
                                 </li>
                                 <!-- (click)=sortOrders() -->
                                 <li class="grid icon ">
