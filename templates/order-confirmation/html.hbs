@@ -47,19 +47,27 @@ tr:nth-child(even) {
  <table>
     <thead>
       <tr>
+        <th></th>
+        <th>Product ID</th>
         <th>ProductName</th>  
-        <th>Quntity</th>
+        <th>Quantity</th>
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
       {{#each cart}}
       <tr>
-            <td>{{@index}}.{{pid}}</td>
-            <td>{{@index}}.{{quntity}}</td>
-            <td>{{@index}}.{{unitPrice}}</td>
+            <td><img src = "http://localhost:4000/v3/load-image?imageUrl={{productUrl}}" style="height:90px"></td>
+            <td>{{pid}}</td>
+            <td>{{productName}}</td>
+            <td>{{quantity}}</td>
+            <td>{{unitPrice}}</td>
       </tr>
       {{/each}}
+      <tr>
+        <td><h3>Total:</h3></td>
+        <td>{{total}}</td>
+      </tr>
     </tbody>
   </table>
 </p>    

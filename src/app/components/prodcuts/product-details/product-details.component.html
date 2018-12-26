@@ -28,18 +28,17 @@
                   <div class="left-content-area"><!-- left content area -->
                       <div class="product-details-slider" id="product-details-slider" data-slider-id="1">
                           <div class="single-product-thumb">
-                              <img src="{{url}}/{{product.imageUrl}}" alt="product details image">
+                              <img src="{{url}}?imageUrl={{product.imageUrl}}" alt="product details image">
                           </div>
                       </div>
-
                   </div><!-- //.left content area -->
               </div>
               <div class="col-lg-6">
                   <div class="right-content-area"><!-- right content area -->
                       <div class="top-content">
                           <ul class="review">
-                              <app-rating [rating]=rating></app-rating>
-                              <li class="reviewes">23 <small>reviews</small> </li>
+                              <app-rating *ngIf = "rating" [rating]="rating"></app-rating>
+                              <li class="reviewes">{{reviews.length}} <small>reviews</small> </li>
                           </ul>
                           <span class="orders">Orders (200+)</span>
                       </div>
@@ -80,7 +79,7 @@
                                   <li><a href="#"><i class="fas fa-share-square"></i></a></li>
                               </ul>
                               <div class="btn-wrapper">
-                                  <a href="#" class="boxed-btn">add to cart</a>
+                                  <a (click)="addToCart(product)" class="submit-btn">add to cart</a>
                               </div>
                           </div>
                       </div>

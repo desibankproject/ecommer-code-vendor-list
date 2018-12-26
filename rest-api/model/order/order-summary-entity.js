@@ -4,11 +4,13 @@
  *  This file is known as module
  */
 //creating mongoose to define schema
-//This mongoose is ORM for 
+//This mongoose is ORM for
 var mongoose = require('mongoose');
 var OrderSummarySchema  = new mongoose.Schema({
     orderId: { type: String,required: true, unique: true },
     orderDetailsId: { type: String},
+    customerId: {type: String},
+    status: {type: String},
     sid: { type: String},
     bid: {type: String}, //shipping id from shipping_collection
     delivaryNotes: { type: String},

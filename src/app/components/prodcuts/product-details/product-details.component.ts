@@ -4,6 +4,7 @@ import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { AppConfig } from 'src/app/config/app.config';
 import { Review } from 'src/app/model/review';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,42 +16,55 @@ export class ProductDetailsComponent implements OnInit {
   public reviews:Review[] = [];
   public rating:number;
   public review:Review;
-  url = AppConfig.PRODUCT_ENDPOINT + "/image";
-  
-  constructor(private route: ActivatedRoute,private productService: ProductService) {
+  url = AppConfig.BASE_ENDPOINT + "/load-image";
+
+  constructor(private route: ActivatedRoute,private productService: ProductService,private shoppingCartService:ShoppingCartService) {
 
   }
 
   ngOnInit() {
     this.review = new Review();
     this.route.params.subscribe((params)=>{
-      
+      this.productService.getRateing(params['id']).subscribe(data=>{this.rating = data;
+      console.log("the rating is:"+ this.rating)});
+
+      this.productService.getReviewByPid(params['id']).subscribe(data=>{
+        this.reviews = data;});
+
       this.productService.getProductByPid(params['id']).subscribe((data)=>{
         this.product = data.pop();
         this.product.techSpecs = JSON.parse(this.product.techSpecs+"");
-        this.productService.getRateing(this.product.pid).subscribe(rdata=>{this.rating = rdata;
-        console.log(this.rating)});
-        this.productService.getReviewByPid(this.product.pid).subscribe(rvdata=>{
-              this.reviews = rvdata;
-            });
+
       });
     });
-    
   }
 
   addReview():void{
-    this.review.id = this.product.pid + "Amon";
-    this.review.pid = this.product.pid;
-    this.review.cid = "Amon";
+    //difine a user...
+    var user = JSON.parse(sessionStorage.getItem('currentUser'));
+    if(user){
+          this.review.id = this.product.pid + user.email;
+          this.review.pid = this.product.pid;
+          this.review.cid = user.email;
     //console.log(this.review);
-    this.productService.saveReview(this.review).subscribe(data=>{
-      if(status == 'success'){
-        this.review = new Review();
-        console.log("post successfull");
-      }else{
-        console.log("could save review");
-      }
-
+          this.productService.saveReview(this.review).subscribe(data=>{
+          if(data.status == "success"){
+            this.reviews.push(this.review);
+            this.review = new Review();
+            console.log("post successfull");
+          }else{
+            console.log("couldnt save review");
+          }
     });
+    }
+ 
+  }
+  
+  addToCart(item){ // should take product as parameter , not take id
+
+    console.log("add To Cart:");
+    console.log(item);
+
+    this.shoppingCartService.addProductToCart(item); // testProd
   }
 }

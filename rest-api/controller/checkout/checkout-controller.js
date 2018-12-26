@@ -6,17 +6,20 @@ var OrderSummaryEntity = require('../../model/order/order-summary-entity');
 var randomstring = require("randomstring");
 var EmailService=require('../../service/vendor-mail');
 var TransactionEntity = require('../../model/order/transaction-entity');
-var ProductCountUpdate = require('../../service/product-count-update');
+var ProductEntity = require('../../model/product-entity');
 
 module.exports.checkout = (req,res) => {
     var orderPlacedDetails = req.body;
     var orderID = randomstring.generate(8);
+    var currentdate = Date.now();
+    orderID = orderID + currentdate.getSeconds() + currentdate.getMinutes() 
+    + currentdate.getHours() + currentdate.getDay() + currentdate.getMonth();
     var message ="";
 
     //------------------shipping & billing code---------------------///
     //-----------relocation to address controller needed------------//
     var billingEntity = new BillingEntity();
-    var shippingEntity = new ShippingEntity();
+   // var shippingEntity = new ShippingEntity();
 
     if(!orderPlacedDetails.billingDetails.bid){
         var bid = randomstring.generate(8);
@@ -37,7 +40,6 @@ module.exports.checkout = (req,res) => {
     
     // }
     
-
 
 //===================================================================/
 //-------------order summary and order detail code-----------------//
@@ -94,6 +96,8 @@ var emailDetails = [{customerFirstName: orderPlacedDetails.billingDetails.firstN
     total: orderPlacedDetails.orderDetails.total,
 }];
 
+emailDetails[0].cart = getCartDetails(emailDetails[0].cart);
+
 transactionEntity.save(err =>{
     if(err){
         return res.status(500).json({status:"fail",message:"There was an error in proccesing the tarnsaction"});
@@ -101,30 +105,60 @@ transactionEntity.save(err =>{
         console.log('transaction saved')
         orderEntity.save(err =>{
             if(err){
-                console.log(err);
+                TransactionEntity.findByIdAndDelete(orderID,()=>{console.log('rolling back failed transaction')});
                 return res.status(500).json({status:"fail",message:"There was an error in saving the order details"});
             }else{
                 orderSummaryEntity.save(err =>{
                     if(err){
+                        TransactionEntity.findByIdAndDelete(orderID,()=>{console.log('rolling back failed transaction')});
+                        OrderEntity.findByIdAndDelete(orderID,()=>{console.log('rolling back failed transaction')});
                         return res.status(500).json({status:"fail",message:"There was an error in saving the order summary"});
                     }else{
 //if all saving is successfull continues
 //else return with an error
                         EmailService.sendOrderEmail(emailDetails);
-                        ///
-                        //ProductCountUpdate.updateTotalSold(orderDetails.items);
-
                         res.status(200).json({status:"success",message:"order was placed successfully"});
                     }
                 });
             }
         });
     }
-
 });
+
+
 
 }
 
+function getCartDetails(cart){
+    console.log('getting additional product detils');
+    var pids = [];
+
+    for(i = 0;i < cart.length;i++){
+        pids[i] = cart[i].pid;
+    }
+
+    ProductEntity.find({
+        'pid': { 
+           
+           $in: pids
+           
+        }
+     }, function(err, data){
+        if(err){
+           return cart;
+        }
+        for(i = 0;i < cart.length;i++){
+            for(x = 0; x < data.length;x++){
+                if(cart[i].pid == data[x].pid){
+                    cart[i].productUrl = data[x].imageUrl;
+                    cart[i].productName = data[x].title;
+                }
+            }
+        }
+     });
+     console.log(cart + " details found");
+     return cart;
+}
 
 module.exports.updateStatus = (req,res) => {
 
