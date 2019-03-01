@@ -6,6 +6,7 @@ import {
 } from 'angular-6-social-login-v2';
 import { GoogleLoginService } from 'src/app/services/login/google-login.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../user/user.service';
 @Component({
   selector: 'app-google-login',
   templateUrl: './google-login.component.html',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class GoogleLoginComponent implements OnInit {
 
-  constructor(private socialAuthService: AuthService, private googleLoginService: GoogleLoginService, private router: Router) { }
+  constructor(private userService:UserService,private socialAuthService: AuthService, private googleLoginService: GoogleLoginService, private router: Router) { }
   ngOnInit() {
   }
   public socialSignIn(socialPlatform: string) {
@@ -52,6 +53,7 @@ export class GoogleLoginComponent implements OnInit {
                   console.log('Logging in as: ' + data.email);
                   if(data3.role=='admin'){
                     this.router.navigate(['/admin-dashboard']);
+                    this.userService.addShareUser(data3);
                   }
                   if(data3.role=='user'){
                     this.router.navigate(['/user-dashboard']);

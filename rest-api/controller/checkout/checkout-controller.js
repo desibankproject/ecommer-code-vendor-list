@@ -10,10 +10,10 @@ var ProductEntity = require('../../model/product-entity');
 
 module.exports.checkout = (req,res) => {
     var orderPlacedDetails = req.body;
-    var orderID = randomstring.generate(8);
-    var currentdate = Date.now();
-    orderID = orderID + currentdate.getSeconds() + currentdate.getMinutes() 
-    + currentdate.getHours() + currentdate.getDay() + currentdate.getMonth();
+    var orderID = randomstring.generate(16);
+    //var currentdate = Date.now();
+    //orderID = orderID + currentdate.getSeconds() + currentdate.getMinutes() 
+    //+ currentdate.getHours() + currentdate.getDay() + currentdate.getMonth();
     var message ="";
 
     //------------------shipping & billing code---------------------///

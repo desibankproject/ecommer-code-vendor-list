@@ -24,13 +24,13 @@ export class ManageSliderComponent implements OnInit {
       this.dataService.currentMessage.subscribe(slider => this.selectedSlider = slider);
       this.sliderData=data;
       this.selectedSlider = data[0];      
-      console.log(this.selectedSlider);
+     // console.log(this.selectedSlider);
     });
   }
 
   public onSelectionChange(slider) {
     this.selectedSlider = Object.assign({}, this.selectedSlider,slider);
-    console.log(this.selectedSlider);
+   // console.log(this.selectedSlider);
   }
 
   public toMainSlider() {

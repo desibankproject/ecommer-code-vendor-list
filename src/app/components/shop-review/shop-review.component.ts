@@ -23,8 +23,8 @@ export class ShopReviewComponent implements OnInit {
     var reviewsGotten = 0;
 
     this.productService.getAllReviews().subscribe(data =>{
-      console.log("all reviews:");
-      console.log(data);
+      //console.log("all reviews:");
+      //console.log(data);
 
       var arrayOfReviews:Review[] = data;
       var reviewItem:Review;
@@ -41,7 +41,7 @@ export class ShopReviewComponent implements OnInit {
         this.productService.getProductByPid(p.pid).subscribe(data =>{
 
           if(data && data[0]){
-            console.log("product:");
+            //console.log("product:");
             //console.log(data[0]);
 
             // model - entity discrepency
@@ -54,7 +54,7 @@ export class ShopReviewComponent implements OnInit {
               newobj[key.toLowerCase()] = data[0][key];
             }
 
-            console.log(newobj);
+            //console.log(newobj);
 
             p.title = data[0].title;
             p.imageUrl = newobj.imageurl; // why imageURL one place, imageUrl another ??!!!
@@ -62,11 +62,11 @@ export class ShopReviewComponent implements OnInit {
 
             reviewItem = p;
 
-            console.log("review item:");
-            console.log(reviewItem);
+            //console.log("review item:");
+            //console.log(reviewItem);
 
             reviewsGotten++;
-            console.log("Reviews gotten: " + reviewsGotten);
+           // console.log("Reviews gotten: " + reviewsGotten);
     
             if(reviewsGotten <= maxReviews){
               // push review into the reviewList
@@ -74,7 +74,7 @@ export class ShopReviewComponent implements OnInit {
             }
             
           }else{
-            console.log("getProductByPid fail");
+           // console.log("getProductByPid fail");
           }
         });
 
@@ -91,8 +91,8 @@ export class ShopReviewComponent implements OnInit {
     var reviewsGotten = 0;
 
     this.productService.getAllReviews().subscribe(data =>{
-      console.log("all reviews:");
-      console.log(data);
+      //console.log("all reviews:");
+      //console.log(data);
 
       var arrayOfReviews:Review[] = data;
       var reviewItem:Review;
@@ -109,7 +109,7 @@ export class ShopReviewComponent implements OnInit {
         this.productService.getProductByPid(p.pid).subscribe(data =>{
 
           if(data && data[0]){
-            console.log("product:");
+            //console.log("product:");
             //console.log(data[0]);
 
             // model - entity discrepency
@@ -122,7 +122,7 @@ export class ShopReviewComponent implements OnInit {
               newobj[key.toLowerCase()] = data[0][key];
             }
 
-            console.log(newobj);
+            //console.log(newobj);
 
             p.title = data[0].title;
             p.imageUrl = newobj.imageurl; // why imageURL one place, imageUrl another ??!!!
@@ -130,11 +130,11 @@ export class ShopReviewComponent implements OnInit {
 
             reviewItem = p;
 
-            console.log("review item:");
-            console.log(reviewItem);
+            //console.log("review item:");
+            //console.log(reviewItem);
 
             reviewsGotten++;
-            console.log("Reviews gotten: " + reviewsGotten);
+           // console.log("Reviews gotten: " + reviewsGotten);
     
             if(reviewsGotten <= maxReviews){
               // push review into the reviewList
@@ -142,7 +142,7 @@ export class ShopReviewComponent implements OnInit {
             }
             
           }else{
-            console.log("getProductByPid fail");
+            //console.log("getProductByPid fail");
           }
         });
 

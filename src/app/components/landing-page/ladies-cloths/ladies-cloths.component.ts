@@ -10,14 +10,17 @@ import { AppConfig } from 'src/app/config/app.config';
 export class LadiesClothsComponent implements OnInit {
   public ladiesclothsProduct:[]=[];
   public baseURI:String="";
+  public show:boolean=false;
   constructor(private ladiesclothsService:LadiesclothsService) { }
 
   ngOnInit() {
+   // ladiesclothsProduct
    this.ladiesclothsService.getladiesclothsProduct().subscribe((data)=>{
     for(var key in data){
       this.ladiesclothsProduct[key]=data[key];
+      this.show=true;
     }
-    console.log(this.ladiesclothsProduct);
+    //console.log(this.ladiesclothsProduct);
     this.baseURI=AppConfig.BASE_ENDPOINT;
    });
    

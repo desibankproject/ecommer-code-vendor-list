@@ -11,9 +11,9 @@ export class BestsellerService {
   constructor(private http:HttpClient) { }
 
   public getbestsellerProduct():Observable<any>{
-    console.log("from best seller service layer");
+    //console.log("from best seller service layer");
     const endpoint=AppConfig.BESTSELLER_ENDPOINT;
-    console.log(endpoint);
+    //console.log(endpoint);
     return this.http.get(endpoint);
   }
 

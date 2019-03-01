@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppConfig } from 'src/app/config/app.config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { User } from 'src/app/model/User';
 
 @Injectable({
@@ -9,6 +9,11 @@ import { User } from 'src/app/model/User';
 })
 export class UserService {
   private imageURI:string="";
+
+  //for sharing identity of currentg user
+  private user=new Subject<User>();
+  public observableUser=this.user.asObservable();
+
   constructor(private http: HttpClient) { }
 
   public findAll():Observable<any>{
@@ -38,5 +43,11 @@ export class UserService {
     const endpoint =AppConfig.DELETE_USER_ENDPOINT;
     return this.http.delete(endpoint+"?username="+username);
   }
+
+    //Terry service for informing current user
+    public addShareUser(user):void{
+      this.user.next(user);
+      //this.movie.complete();
+    }
 
 }

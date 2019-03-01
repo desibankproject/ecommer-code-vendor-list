@@ -33,7 +33,7 @@ export class BestSellersAreaComponent implements OnInit {
       }
     });
     this.vendorsLoaded=Promise.resolve(true);
-    console.log(this.topVendors)
+    //console.log(this.topVendors)
   }
 
   public findVendors(ven) {

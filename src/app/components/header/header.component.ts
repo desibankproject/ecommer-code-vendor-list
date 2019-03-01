@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     this.shoppingCartService.productObservable.subscribe(
       pProductArray=>{
 
-        console.log("header update");
+        //console.log("header update");
 
         this.itemsInCart = pProductArray.length;
 

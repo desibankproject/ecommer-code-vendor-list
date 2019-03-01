@@ -15,8 +15,8 @@ export class FeaturedService {
     //console.log("service layer is called");
     
     const endpoint=AppConfig.FEATURED_ENDPOINT;
-    console.log("service layer is called");
-    console.log(endpoint);
+   // console.log("service layer is called");
+    //console.log(endpoint);
     return this.http.get(endpoint);
 
   }

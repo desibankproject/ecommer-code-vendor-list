@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 export class SliderComponent implements OnInit {
 
   public imageUrl:string="";
-  public slider:Slider;
+  public slider:Slider=new Slider();
 
   constructor(private sliderService:SliderService, private dataService:DataService) {}
  
@@ -29,23 +29,17 @@ export class SliderComponent implements OnInit {
         if(info == null) {
          this.sliderService.findSlider().subscribe(data=>{
            this.slider = data[0];
-           console.log("Here is your slider baba:");
-           console.log(this.slider);
+        
            var doodoo:string = '../../../'+this.slider.image;  
          this.imageUrl = doodoo;
-         console.log(this.slider.image);
-         console.log(this.imageUrl);
-         console.log(doodoo);
+        
          });   
        }else {
         this.slider = info;
-        console.log("Here is your slider chacha:");
-        console.log(this.slider);
+      
         var doodoo:string = '../../../'+this.slider.image;  
       this.imageUrl = doodoo;
-      console.log(this.slider.image);
-      console.log(this.imageUrl);
-      console.log(doodoo);
+    
        }
 
     });

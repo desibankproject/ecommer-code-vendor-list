@@ -36,6 +36,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
+  { path: '', component: LandingPageComponent },
   { path: 'user-list', component: UserListComponent},
    { path: 'logout', component: LogoutComponent},
    { path: 'admin-dashboard', component: DashboardComponent},

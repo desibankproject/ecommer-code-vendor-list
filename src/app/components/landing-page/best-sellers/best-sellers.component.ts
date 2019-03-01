@@ -10,6 +10,7 @@ import { AppConfig } from 'src/app/config/app.config';
 })
 export class BestSellersComponent implements OnInit {
   public bestsellerProduct:[]=[];
+  public show:boolean=false;
   public baseURI:String="";
   fillstar:number[] = [3,3,3];
   emptystar:number[] = [3,3];
@@ -19,8 +20,9 @@ export class BestSellersComponent implements OnInit {
     this.bestsellerService.getbestsellerProduct().subscribe((data)=>{
       for(var key in data){
         this.bestsellerProduct[key]=data[key];
+        this.show=true;
       }
-      console.log(this.bestsellerProduct);
+    //  console.log(this.bestsellerProduct);
       this.baseURI=AppConfig.BASE_ENDPOINT;
     });
     

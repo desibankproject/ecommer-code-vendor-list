@@ -1,4 +1,4 @@
-<div class="single-featured-one-item"><!-- single featured item -->
+<div class="single-featured-one-item" *ngIf="show"><!-- single featured item -->
     <div class="inner-item">
         <span class="subtitle">{{featuredProduct[0].subtitle}}</span>
         <h3 class="titles">{{featuredProduct[0].titles}}</h3>
@@ -11,7 +11,7 @@
                 </div>
                 <div class="content">
                     <ul class="ratings">
-                            <li *ngFor="let p of fillstar";><i class="fas fa-star"></i></li>
+                            <li *ngFor="let p of fillstar;"><i class="fas fa-star"></i></li>
                             <li *ngFor="let f of emptystar;"><i class="far fa-star"></i></li>
                            
                     </ul>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="content">
                     <ul class="ratings">
-                            <li *ngFor="let p of fillstar";><i class="fas fa-star"></i></li>
+                            <li *ngFor="let p of fillstar;"><i class="fas fa-star"></i></li>
                             <li *ngFor="let f of emptystar;"><i class="far fa-star"></i></li>
 
                     </ul>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="content">
                     <ul class="ratings">
-                            <li *ngFor="let p of fillstar";><i class="fas fa-star"></i></li>
+                            <li *ngFor="let p of fillstar;"><i class="fas fa-star"></i></li>
                             <li *ngFor="let f of emptystar;"><i class="far fa-star"></i></li>
                     </ul>
                     <a href="product-details.html"><h4 class="title">{{featuredProduct[2].title}}</h4></a>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="content">
                     <ul class="ratings">
-                            <li *ngFor="let p of fillstar";><i class="fas fa-star"></i></li>
+                            <li *ngFor="let p of fillstar;"><i class="fas fa-star"></i></li>
                             <li *ngFor="let f of emptystar;"><i class="far fa-star"></i></li>
                     </ul>
                     <a href="product-details.html"><h4 class="title">{{featuredProduct[3].title}}</h4></a>

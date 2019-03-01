@@ -15,6 +15,7 @@ export class OffersaddComponent implements OnInit {
   //private offerdetails:Offeradd;
   private offerAdd:[]=[];
   public baseURI:String="";
+  public show:boolean=false;
   constructor(private offeraddService:OfferaddService) { }
 
   ngOnInit() {
@@ -22,7 +23,8 @@ export class OffersaddComponent implements OnInit {
       for(var key in data){
         this.offerAdd[key]=data[key];
       }
-      console.log(this.offerAdd);
+      this.show=true;
+      //console.log(this.offerAdd);
       this.baseURI=AppConfig.BASE_ENDPOINT;
     });
   }

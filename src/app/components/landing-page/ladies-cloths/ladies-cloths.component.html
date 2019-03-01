@@ -32,7 +32,8 @@
                             </li>
                         </ul>
                     </div><!-- //. countdown area -->
-                    <div class="bottom-content">
+                    <div class="bottom-content" *ngIf="show">
+
                         <span class="subtitle">{{ladiesclothsProduct[0].subtitle}}</span>
                         <h3 class="title">{{ladiesclothsProduct[0].title}}</h3>
                         <p>{{ladiesclothsProduct[0].description}}</p>

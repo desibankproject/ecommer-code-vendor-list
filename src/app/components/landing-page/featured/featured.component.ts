@@ -15,6 +15,7 @@ export class FeaturedComponent implements OnInit {
   emptystar:number[] = [3,3];
   public featuredProduct:[]=[];
   public baseURI:String="";
+  public show:boolean=false;
   constructor(private route:ActivatedRoute,private featuredService:FeaturedService) { }
 
   ngOnInit() {
@@ -23,7 +24,8 @@ export class FeaturedComponent implements OnInit {
         for (var key in data) {
           this.featuredProduct[key]=data[key];
         }
-        console.log(this.featuredProduct);
+        this.show=true;
+       // console.log(this.featuredProduct);
         this.baseURI=AppConfig.BASE_ENDPOINT;
       });
   

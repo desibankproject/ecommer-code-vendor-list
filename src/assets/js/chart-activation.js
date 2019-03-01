@@ -13,7 +13,7 @@ chartData = {
 };
 
 
-createChart('chartChart', chartData);
+//createChart('chartChart', chartData);
 
 function createChart(id,data){
     var ctx = document.getElementById(id).getContext('2d');
@@ -36,6 +36,6 @@ function createChart(id,data){
 
 }
 
-setTimeout(function(){
-    document.getElementById('chartChart').style.height = '243px'; 
-}, 100);
+//setTimeout(function(){
+  //  document.getElementById('chartChart').style.height = '243px'; 
+//}, 100);

@@ -35,8 +35,8 @@ export class NewProductAreaComponent implements OnInit {
     for (var i=0; i<6; ++i) {
       this.trendingProducts[i]=products[i];
     }
-    console.log("trendingProducts:")
-    console.log(this.trendingProducts);
+  //  console.log("trendingProducts:")
+   // console.log(this.trendingProducts);
   }
 
   public sortByDiscount(products) {
@@ -47,8 +47,8 @@ export class NewProductAreaComponent implements OnInit {
     for (var i=0; i<6; ++i) {
       this.hotDealsProducts[i]=products[i];
     }
-    console.log("hotDeals")
-    console.log(this.hotDealsProducts);
+   // console.log("hotDeals")
+    //console.log(this.hotDealsProducts);
   }
 
   // testnum
@@ -79,8 +79,8 @@ export class NewProductAreaComponent implements OnInit {
     }
     */
 
-    console.log("add To Cart:");
-    console.log(item);
+    //console.log("add To Cart:");
+    //console.log(item);
 
     this.shoppingCartService.addProductToCart(item); // testProd
 

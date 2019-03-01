@@ -11,9 +11,9 @@ export class LadiesclothsService {
   constructor(private http:HttpClient) { }
 
   public getladiesclothsProduct():Observable<any>{
-    console.log("from service layer");
+   // console.log("from service layer");
     const endpoint=AppConfig.LADIES_CLOTH_ENDPOINT;
-    console.log(endpoint);
+    //console.log(endpoint);
     return this.http.get(endpoint);
   }
 }
