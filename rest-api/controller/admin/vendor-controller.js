@@ -6,8 +6,8 @@ const nodemailer = require('nodemailer'),
     transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'synergisticit2020@gmail.com',
-            pass: 'synergisticit2020@123',
+            user: 'java2java2019@gmail.com',
+            pass: 'Test@1234',
         },
     }),
     EmailTemplate = require('email-templates').EmailTemplate,
