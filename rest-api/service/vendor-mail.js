@@ -6,8 +6,8 @@ const nodemailer = require('nodemailer'),
 transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'synergisticit2020@gmail.com',
-        pass: 'synergisticit2020@123',
+        user: 'java2java2019@gmail.com',
+        pass: 'Test@1234',
     },
 }),
 EmailTemplate = require('email-templates').EmailTemplate,
@@ -35,6 +35,9 @@ Promise = require('bluebird'); // Promise API
 
 //This will just send email for obj data
 function sendEmail (obj) {
+    console.log("=================transporter===================");
+    console.log(obj);
+    console.log("=================transporter===================");
     return transporter.sendMail(obj);
 }
 
